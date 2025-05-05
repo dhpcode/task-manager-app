@@ -1,7 +1,41 @@
 const appName = 'Task Manager';
-
+const tasks = [];
 function showWelcomeMessage() {
     alert(`Welcome to ${appName}. Manage your tasks efficiently!`)
+}
+
+const addTask = () => {
+    const taskTitle = prompt('Please, enter a task title: ')
+    if (taskTitle) {
+        const newTask = {
+            id: tasks.length + 1,
+            title: taskTitle,
+            completed: false
+        }
+        tasks.push(newTask);
+        alert(`Task ${taskTitle} added successfully`);
+    }
+    else {
+        alert('Task title cannot be empty!');
+    }
+}
+
+const viewTasks = () => {
+    if (tasks.length === 0) {
+        alert('No tasks available!')
+    } else {
+        let taskList = "Here are your tasks: ";
+        for (let i = 0; i < tasks.length; i++) {
+            const task = tasks[i];
+            taskList += `
+            Id: ${task.id},
+            Title: ${task.title}, 
+            Completed: ${task.completed ? "Yes" : "No"}
+            `
+        }
+        alert(taskList);
+        console.log(taskList);
+    }
 }
 
 
@@ -21,10 +55,10 @@ function showMainMenu() {
 
         switch (choice) {
             case "1":
-                alert('Add task');
+                addTask();
                 break;
             case "2":
-                alert("View task");
+                viewTasks();
                 break;
             case "3":
                 alert("Toggle task");
