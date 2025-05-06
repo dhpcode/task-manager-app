@@ -50,6 +50,28 @@ const toggleTask = () => {
     }
 }
 
+const removeTask = () => {
+    const taskId = parseInt(prompt(`Enter task id to remove: `));
+    const taskIndex = tasks.findIndex(task => task.id === taskId);
+    if (taskIndex !== -1) {
+        const removedTask = tasks.splice(taskIndex, 1)[0];
+        alert(`Task ${removedTask.title} removed successfully!`);
+    } else {
+        alert('Invalid taskId!')
+    }
+}
+
+
+const displaySummary = () => {
+    const completedTasksCount = tasks.filter(task => task.completed).length;
+    const incompletedTaskCount = tasks.length - completedTasksCount;
+    alert(`
+        Summary:
+        Total tasks: ${tasks.length}
+        Completed tasks: ${completedTasksCount}
+        Incompleted tasks: ${incompletedTaskCount}    
+    `)
+}
 
 function showMainMenu() {
     let choice;
@@ -76,10 +98,10 @@ function showMainMenu() {
                 toggleTask();
                 break;
             case "4":
-                alert("Remove task");
+                removeTask();
                 break;
             case "5":
-                alert("Display summary");
+                displaySummary();
                 break;
             case "6":
                 alert(`Goodbye! Thanks for using ${appName}!`);
