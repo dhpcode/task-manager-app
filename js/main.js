@@ -38,6 +38,18 @@ const viewTasks = () => {
     }
 }
 
+const toggleTask = () => {
+    const taskId = parseInt(prompt(`Enter task id to toggle completion: `));
+    const task = tasks.find(task => task.id === taskId);
+
+    if (task) {
+        task.completed = !task.completed;
+        alert(`Task ${task.title} is ${task.completed ? "completed" : "incompleted"}`)
+    } else {
+        alert(`Invalid task id`)
+    }
+}
+
 
 function showMainMenu() {
     let choice;
@@ -61,7 +73,7 @@ function showMainMenu() {
                 viewTasks();
                 break;
             case "3":
-                alert("Toggle task");
+                toggleTask();
                 break;
             case "4":
                 alert("Remove task");
